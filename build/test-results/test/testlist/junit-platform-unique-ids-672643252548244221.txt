@@ -1,1 +1,0 @@
-[engine:junit-jupiter]/[class:com.chess.player.reactive_hibernate_starter.TestMainVerticle]/[method:getCustomerReturnsAvalue(io.vertx.core.Vertx, io.vertx.junit5.VertxTestContext)]
