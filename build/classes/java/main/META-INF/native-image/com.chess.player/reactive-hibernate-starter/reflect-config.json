@@ -1,0 +1,12 @@
+[ {
+  "name" : "com.chess.player.reactive_hibernate_starter.model.Customer",
+  "allDeclaredFields" : true,
+  "allPublicMethods" : true,
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  } ],
+  "allDeclaredConstructors" : true
+}, {
+  "name" : "com.chess.player.reactive_hibernate_starter.model.Customer[]"
+} ]

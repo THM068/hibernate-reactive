@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.chess.player.reactive_hibernate_starter.TestMainVerticle" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-13T05:54:20" hostname="OSTML0231644" time="2.848">
+  <properties/>
+  <testcase name="getCustomerReturnsAvalue(Vertx, VertxTestContext)" classname="com.chess.player.reactive_hibernate_starter.TestMainVerticle" time="2.848"/>
+  <system-out><![CDATA[?[34m05:54:21.490?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.j.i.u.LogHelper?[m - HHH000204: Processing PersistenceUnitInfo [name: customer-reactive-demo]
+?[34m05:54:21.563?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.Version?[m - HHH000412: Hibernate ORM core version 5.6.2.Final
+?[34m05:54:21.752?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.a.c.Version?[m - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+?[34m05:54:21.914?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.d.Dialect?[m - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+?[34m05:54:22.188?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.r.p.i.ReactiveIntegrator?[m - HR000001: Hibernate Reactive Preview
+?[34m05:54:22.498?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.r.p.i.DefaultSqlClientPool?[m - HR000011: SQL Client URL [jdbc:mysql://localhost:3306/sakila]
+?[34m05:54:22.503?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mo.h.r.p.i.DefaultSqlClientPoolConfiguration?[m - HR000025: Connection pool size: 10
+?[34m05:54:22.666?[m [vert.x-eventloop-thread-1] ?[32mINFO ?[m ?[35mc.c.p.r.v.CustomerRestVerticle?[m - HTTP server started on port 8888
+?[34m05:54:22.666?[m [vert.x-eventloop-thread-0] ?[32mINFO ?[m ?[35mc.c.p.r.MainVerticle?[m - com.chess.player.reactive_hibernate_starter.verticles.CustomerRestVerticle has been successful deployed with ref ff494e9a-3da3-4a03-8931-8f61d38f4d12
+?[34m05:54:22.717?[m [vert.x-eventloop-thread-2] ?[33mWARN ?[m ?[35mi.n.r.d.DnsServerAddressStreamProviders?[m - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+?[35m[Hibernate]?[0m 
+    ?[34mselect?[0m
+        customer0_.ID ?[34mas?[0m id1_0_,
+        customer0_.address ?[34mas?[0m address2_0_,
+        customer0_.city ?[34mas?[0m city3_0_,
+        customer0_.country ?[34mas?[0m country4_0_,
+        customer0_.name ?[34mas?[0m name5_0_,
+        customer0_.notes ?[34mas?[0m notes6_0_,
+        customer0_.phone ?[34mas?[0m phone7_0_,
+        customer0_.SID ?[34mas?[0m sid8_0_,
+        customer0_.?[32m`zip code`?[0m ?[34mas?[0m zip9_0_ 
+    ?[34mfrom?[0m
+        customer_list customer0_ limit ?
+?[34m05:54:23.194?[m [vert.x-eventloop-thread-1] ?[32mINFO ?[m ?[35mi.v.e.w.h.i.LoggerHandlerImpl?[m - 127.0.0.1 - - [Thu, 13 Jan 2022 05:54:22 GMT] "GET /api/customer HTTP/1.1" 200 569 "-" "-"
+?[34m05:54:23.195?[m [vert.x-eventloop-thread-1] ?[32mINFO ?[m ?[35mc.c.p.r.c.CustomerController?[m - Getting all customers
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

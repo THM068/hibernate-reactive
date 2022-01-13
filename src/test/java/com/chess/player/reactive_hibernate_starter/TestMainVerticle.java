@@ -38,7 +38,7 @@ public class TestMainVerticle {
          .compose(request -> request.send())
          .compose(response -> response.body())
          .onSuccess(body -> testContext.verify(()->{
-           assertEquals("{\"message\":\"all customers\"}", body.toString());
+           assertEquals("{\"result\":[{\"name\":\"VERA MCCOY\",\"address\":\"1168 Najafabad Parkway\",\"zip\":\"40301\",\"city\":\"Kabul\",\"country\":\"Afghanistan\"},{\"name\":\"MARIO CHEATHAM\",\"address\":\"1924 Shimonoseki Drive\",\"zip\":\"52625\",\"city\":\"Batna\",\"country\":\"Algeria\"},{\"name\":\"JUDY GRAY\",\"address\":\"1031 Daugavpils Parkway\",\"zip\":\"59025\",\"city\":\"Bchar\",\"country\":\"Algeria\"},{\"name\":\"JUNE CARROLL\",\"address\":\"757 Rustenburg Avenue\",\"zip\":\"89668\",\"city\":\"Skikda\",\"country\":\"Algeria\"},{\"name\":\"ANTHONY SCHWAB\",\"address\":\"1892 Nabereznyje Telny Lane\",\"zip\":\"28396\",\"city\":\"Tafuna\",\"country\":\"American Samoa\"}]}", body.toString());
            testContext.completeNow();
          }))
          .onFailure(failure -> testContext.failNow(failure));
