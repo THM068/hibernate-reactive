@@ -50,8 +50,8 @@ public class CustomerController {
         .setStatusCode(200)
         .end(new JsonObject().put("result", new JsonArray(customers)).toBuffer());
       logger.info("Getting all customers");
-    }).
-    onFailure(failure -> this.handleFailure(failure, routingContext));
+    })
+    .onFailure(failure -> this.handleFailure(failure, routingContext));
 
   }
 
