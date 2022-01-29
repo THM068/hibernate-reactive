@@ -1,6 +1,7 @@
 package com.chess.player.reactive_hibernate_starter.verticles;
 
 import com.chess.player.reactive_hibernate_starter.controllers.CustomerController;
+import com.chess.player.reactive_hibernate_starter.services.CustomerService;
 import io.micronaut.context.BeanContext;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -31,7 +32,9 @@ public class CustomerRestVerticle extends AbstractVerticle  {
     Router router = Router.router(getVertx());
     router.route().handler(LoggerHandler.create());
     applyBodyHander(router);
-    this.customerController.attach(router);
+    CustomerService service = CustomerService
+      .createProxy(vertx, "customer.data");
+    this.customerController.attach(router, service);
 
     vertx.createHttpServer()
       .requestHandler(router)

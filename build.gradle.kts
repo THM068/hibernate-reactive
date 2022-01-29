@@ -39,6 +39,14 @@ dependencies {
   implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
   implementation("org.slf4j:slf4j-api:1.7.30")
 
+  implementation("io.vertx:vertx-service-proxy:4.2.4")
+  implementation("io.vertx:vertx-codegen:4.2.4")
+  annotationProcessor("io.vertx:vertx-codegen:4.2.4:processor")
+  annotationProcessor("io.vertx:vertx-service-proxy:4.2.4")
+  // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+  implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
+
+
   compileOnly("org.projectlombok:lombok:1.18.22")
 
 
@@ -69,4 +77,16 @@ tasks.withType<Test> {
 
 tasks.withType<JavaExec> {
   args = listOf("run", mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$launcherClassName", "--on-redeploy=$doOnChange")
+}
+
+tasks.getByName<JavaCompile>("compileJava") {
+  options.annotationProcessorGeneratedSourcesDirectory = File("$projectDir/src/main/generated")
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs ("src/main/generated")
+    }
+  }
 }
