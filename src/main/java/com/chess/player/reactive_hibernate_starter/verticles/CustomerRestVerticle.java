@@ -32,9 +32,8 @@ public class CustomerRestVerticle extends AbstractVerticle  {
     Router router = Router.router(getVertx());
     router.route().handler(LoggerHandler.create());
     applyBodyHander(router);
-    CustomerService service = CustomerService
-      .createProxy(vertx, "customer.data");
-    this.customerController.attach(router, service);
+
+    this.customerController.attach(router);
 
     vertx.createHttpServer()
       .requestHandler(router)

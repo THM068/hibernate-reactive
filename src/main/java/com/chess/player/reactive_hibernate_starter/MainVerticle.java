@@ -26,7 +26,7 @@ public class MainVerticle extends AbstractVerticle {
   private Future deployVerticle(String verticleName, String verticleClassName, Promise<Void> startPromise) {
     return vertx.deployVerticle(verticleName)
       .onSuccess(id -> {this.handleSuccessfulDeployment(id, verticleClassName, startPromise );
-        deployVerticle(CustomerDataVerticle.VERTICLE_NAME, CustomerDataVerticle.class.getName(), startPromise)
+        deployVerticle(CustomerDataVerticle.VERTICLE_NAME, CustomerDataVerticle.class.getName(), startPromise);
       })
       .onFailure(throwable -> this.handleDeploymentFailure(throwable, startPromise));
   }

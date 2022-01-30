@@ -16,7 +16,8 @@ public class CustomerServiceImpl implements CustomerService {
   }
   @Override
   public void getCustomers(Handler<AsyncResult<JsonObject>> handler) {
-      this.vertx.eventBus().<JsonObject>consumer("customer.data", message -> handleGetCustomer(message, handler));
+    JsonObject jsonObject = new JsonObject().put("message", "hello-you");
+    handler.handle(Future.succeededFuture(jsonObject));
   }
 
   private void handleGetCustomer(Message<JsonObject> message, Handler<AsyncResult<JsonObject>> handler) {

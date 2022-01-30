@@ -34,14 +34,14 @@ public class CustomerController {
     this.customerRepository = customerRepository;
   }
 
-  public void attach(Router router, CustomerService customerService) {
-    service = customerService;
+  public void attach(Router router) {
      router.route(HttpMethod.GET, "/api/customer").handler(this::getCustomers);
      router.route(HttpMethod.GET, "/api/proxy/customer").handler(this::getCustomersFromEb);
   }
 
   private void getCustomersFromEb(RoutingContext routingContext) {
-
+    CustomerService service = CustomerService
+      .createProxy(routingContext.vertx(), "customer.data");
 
     service.getCustomers(handler -> this.getCustomersFromEb(handler, routingContext));
 
