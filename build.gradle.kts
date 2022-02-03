@@ -46,6 +46,8 @@ dependencies {
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
   implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
 
+  implementation("io.vertx:vertx-config:4.2.4")
+
 
   compileOnly("org.projectlombok:lombok:1.18.22")
 

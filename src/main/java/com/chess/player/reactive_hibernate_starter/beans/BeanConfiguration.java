@@ -19,4 +19,5 @@ public class BeanConfiguration {
   public Stage.SessionFactory sessionFactory(EntityManagerFactory entityManagerFactory) {
     return entityManagerFactory.unwrap(Stage.SessionFactory.class);
   }
+
 }

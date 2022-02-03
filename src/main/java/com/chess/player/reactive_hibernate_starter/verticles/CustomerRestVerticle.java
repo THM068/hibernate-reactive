@@ -3,10 +3,12 @@ package com.chess.player.reactive_hibernate_starter.verticles;
 import com.chess.player.reactive_hibernate_starter.controllers.CustomerController;
 import com.chess.player.reactive_hibernate_starter.services.CustomerService;
 import io.micronaut.context.BeanContext;
+import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.LoggerHandler;
@@ -29,19 +31,33 @@ public class CustomerRestVerticle extends AbstractVerticle  {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     Vertx vertx = getVertx();
+    ConfigRetriever configRetriever = ConfigRetriever.create(vertx);
+
+
     Router router = Router.router(getVertx());
     router.route().handler(LoggerHandler.create());
     applyBodyHander(router);
 
     this.customerController.attach(router);
 
-    vertx.createHttpServer()
-      .requestHandler(router)
-      .listen(API_PORT)
-      .onSuccess(this::successServerStartup)
-      .onFailure(this::handleServerfailure);
+    configRetriever.getConfig()
+      .onSuccess(configEntry -> this.handleConfigSucess(configEntry, router))
+      .onFailure(this::handleConfigFailure);
 
     startPromise.complete();
+  }
+
+  private void handleConfigFailure(Throwable throwable) {
+    logger.info("Config loading failed {}", throwable);
+  }
+
+  private void handleConfigSucess(JsonObject entries, Router router) {
+    Integer http_port = entries.getInteger("HTTP_PORT", 8888);
+    getVertx().createHttpServer()
+      .requestHandler(router)
+      .listen(http_port)
+      .onSuccess(this::successServerStartup)
+      .onFailure(this::handleServerfailure);
   }
 
   private void handleServerfailure(Throwable throwable) {
