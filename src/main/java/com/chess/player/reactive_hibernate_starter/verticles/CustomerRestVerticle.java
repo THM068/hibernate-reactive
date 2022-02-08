@@ -1,5 +1,7 @@
 package com.chess.player.reactive_hibernate_starter.verticles;
 
+import com.chess.player.reactive_hibernate_starter.beans.BrokerConfig;
+import com.chess.player.reactive_hibernate_starter.beans.ConfigLoader;
 import com.chess.player.reactive_hibernate_starter.controllers.CustomerController;
 import com.chess.player.reactive_hibernate_starter.services.CustomerService;
 import io.micronaut.context.BeanContext;
@@ -22,10 +24,12 @@ public class CustomerRestVerticle extends AbstractVerticle  {
   private Logger logger = LoggerFactory.getLogger(CustomerRestVerticle.class);
   private static int API_PORT = 8888;
   private CustomerController customerController;
+  private ConfigLoader configLoader;
 
   public CustomerRestVerticle() {
     BeanContext beanContext = BeanContext.run();
     this.customerController = beanContext.getBean(CustomerController.class);
+    this.configLoader = beanContext.getBean(ConfigLoader.class);
   }
 
   @Override
@@ -40,7 +44,7 @@ public class CustomerRestVerticle extends AbstractVerticle  {
 
     this.customerController.attach(router);
 
-    configRetriever.getConfig()
+    configLoader.load(vertx)
       .onSuccess(configEntry -> this.handleConfigSucess(configEntry, router))
       .onFailure(this::handleConfigFailure);
 
@@ -51,11 +55,10 @@ public class CustomerRestVerticle extends AbstractVerticle  {
     logger.info("Config loading failed {}", throwable);
   }
 
-  private void handleConfigSucess(JsonObject entries, Router router) {
-    Integer http_port = entries.getInteger("HTTP_PORT", 8888);
+  private void handleConfigSucess(BrokerConfig brokerConfig, Router router) {
     getVertx().createHttpServer()
       .requestHandler(router)
-      .listen(http_port)
+      .listen(brokerConfig.getServer_port())
       .onSuccess(this::successServerStartup)
       .onFailure(this::handleServerfailure);
   }

@@ -1,3 +1,4 @@
+com.chess.player.reactive_hibernate_starter.beans.$ConfigLoader$Definition$Reference
 com.chess.player.reactive_hibernate_starter.dao.$CustomerRepository$Definition$Reference
 com.chess.player.reactive_hibernate_starter.controllers.$CustomerController$Definition$Reference
 com.chess.player.reactive_hibernate_starter.beans.$BeanConfiguration$SessionFactory1$Definition$Reference
